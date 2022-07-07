@@ -1,0 +1,75 @@
+В соответствии с уроком 26 создала файлы ю
+Скопировала , добавила файл chromedriver.exe 
+запускаю тест py -m pytest -v --driver Chrome --driver-path chromedriver.exe test_auth_page.py
+на выходе получаю 
+PS C:\Users\okbre\PycharmProjects\04_selenium\tests_26> py -m pytest -v --driver Chrome --driver-path chromedriver.exe test_auth_page.py
+================================================================== test session starts ===================================================================
+platform win32 -- Python 3.9.7, pytest-6.2.5, py-1.11.0, pluggy-1.0.0 -- C:\Users\okbre\AppData\Local\Programs\Python\Python39\python.exe
+cachedir: .pytest_cache
+metadata: {'Python': '3.9.7', 'Platform': 'Windows-10-10.0.19044-SP0', 'Packages': {'pytest': '6.2.5', 'py': '1.11.0', 'pluggy': '1.0.0'}, 'Plugins': {'bas
+e-url': '1.4.2', 'html': '3.1.1', 'metadata': '2.0.1', 'selenium': '3.0.0', 'variables': '1.9.0'}, 'Base URL': '', 'Driver': 'Chrome', 'Capabilities': {}} 
+driver: Chrome
+sensitiveurl: .*
+rootdir: C:\Users\okbre\PycharmProjects\04_selenium\tests_26
+plugins: base-url-1.4.2, html-3.1.1, metadata-2.0.1, selenium-3.0.0, variables-1.9.0
+collected 1 item
+
+test_auth_page.py::test_auth_page ERROR                                                                                                             [100%]
+
+========================================================================= ERRORS ========================================================================= 
+____________________________________________________________ ERROR at setup of test_auth_page ____________________________________________________________ 
+
+request = <SubRequest 'driver' for <Function test_auth_page>>, driver_class = <class 'selenium.webdriver.chrome.webdriver.WebDriver'>
+driver_kwargs = {'desired_capabilities': {'browserName': 'chrome', 'goog:chromeOptions': {'args': ['--kiosk'], 'binary': '/path/to/chr...', '--log-path=C:\
+\Users\\okbre\\AppData\\Local\\Temp\\pytest-of-Oksana\\pytest-17\\test_auth_page0\\driver.log'], ...}
+
+    @pytest.fixture
+    def driver(request, driver_class, driver_kwargs):
+        """Returns a WebDriver instance based on options and capabilities"""
+
+        retries = int(request.config.getini("max_driver_init_attempts"))
+>       for retry in Retrying(
+            stop=stop_after_attempt(retries), wait=wait_exponential(), reraise=True
+        ):
+
+..\..\..\AppData\Local\Programs\Python\Python39\lib\site-packages\pytest_selenium\pytest_selenium.py:203:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  
+..\..\..\AppData\Local\Programs\Python\Python39\lib\site-packages\tenacity\__init__.py:394: in __iter__
+    do = self.iter(retry_state=retry_state)
+..\..\..\AppData\Local\Programs\Python\Python39\lib\site-packages\tenacity\__init__.py:372: in iter
+    raise retry_exc.reraise()
+..\..\..\AppData\Local\Programs\Python\Python39\lib\site-packages\tenacity\__init__.py:189: in reraise
+    raise self.last_attempt.result()
+..\..\..\AppData\Local\Programs\Python\Python39\lib\concurrent\futures\_base.py:438: in result
+    return self.__get_result()
+..\..\..\AppData\Local\Programs\Python\Python39\lib\concurrent\futures\_base.py:390: in __get_result
+    raise self._exception
+..\..\..\AppData\Local\Programs\Python\Python39\lib\site-packages\pytest_selenium\pytest_selenium.py:210: in driver
+    driver = driver_class(**driver_kwargs)
+..\..\..\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\chrome\webdriver.py:73: in __init__
+    self.service.start()
+..\..\..\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\common\service.py:98: in start
+    self.assert_process_still_running()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  
+
+self = <selenium.webdriver.chrome.service.Service object at 0x0000024C4B32E8E0>
+
+    def assert_process_still_running(self):
+        return_code = self.process.poll()
+        if return_code is not None:
+>           raise WebDriverException(
+                'Service %s unexpectedly exited. Status code was: %s'
+                % (self.path, return_code)
+            )
+E           selenium.common.exceptions.WebDriverException: Message: Service chromedriver.exe unexpectedly exited. Status code was: 1
+
+..\..\..\AppData\Local\Programs\Python\Python39\lib\site-packages\selenium\webdriver\common\service.py:109: WebDriverException
+-------------------------------------------------------------------- pytest-selenium --------------------------------------------------------------------- 
+Driver log: C:\Users\okbre\AppData\Local\Temp\pytest-of-Oksana\pytest-17\test_auth_page0\driver.log
+================================================================ short test summary info ================================================================= 
+ERROR test_auth_page.py::test_auth_page - selenium.common.exceptions.WebDriverException: Message: Service chromedriver.exe unexpectedly exited. Status c...
+=================================================================== 1 error in 21.02s ==================================================================== 
+PS C:\Users\okbre\PycharmProjects\04_selenium\tests_26> 
+что с этим делать я не понимаю , скачав на комп ПРИМЕР С GITPUSH  я вижу тот же результат ! 
+вы извените , но в 25 уроке ясности было наааамного больше и если вам легче - да ! я тупая - обьясните мне ! 
+и chromedriver.exe соответствует моему хрому - 3 раза уже перезаливала .
